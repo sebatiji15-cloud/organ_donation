@@ -1,0 +1,77 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+  	<title>Matching Organ Requests - Organ Donation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'organrequest/css/style.css' %}">
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-between align-items-center mb-4">
+				<div class="col-md-6">
+					<h2 class="heading-section mb-0">Active Organ Requests</h2>
+					{% if blood %}
+					<p class="text-muted mt-1 mb-0"><small>Showing requests for blood group: <strong>{{ blood }}</strong></small></p>
+					{% endif %}
+				</div>
+				<div class="col-md-6 text-md-right mt-3 mt-md-0">
+					<a href="/user/" class="btn btn-secondary px-3 py-2"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+					<a href="/addorgan/" class="btn btn-success px-3 py-2 ml-2">Donate Organ</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+						      <th>#</th>
+						      <th>Recipient Name</th>
+						      <th>Email</th>
+						      <th>Address</th>
+								<th>Age</th>
+								<th>Blood Group</th>
+								<th>Organ Needed</th>
+								<th>Gender</th>
+								<th>Phone Number</th>
+						    </tr>
+						  </thead>
+							 <tbody>
+						       {% for i in req %}
+						    <tr class="alert" role="alert">
+						      <th scope="row">{{forloop.counter}}</th>
+						      <td><strong>{{i.username}}</strong></td>
+						      <td>{{i.email}}</td>
+						      <td>{{i.address}}</td>
+								<td>{{i.age}}</td>
+						        <td><span class="badge badge-light border">{{i.bloodgroup}}</span></td>
+								<td><strong style="color:#007bff;">{{i.organtype}}</strong></td>
+								<td>{{i.gender}}</td>
+								<td>{{i.phonenumber}}</td>
+						    </tr>
+						    {% empty %}
+						    <tr>
+						      <td colspan="9" class="text-center py-4 text-muted">No active organ requests found matching this blood group.</td>
+						    </tr>
+						  {% endfor %}
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="{% static 'organrequest/js/jquery.min.js' %}"></script>
+    <script src="{% static 'organrequest/js/popper.js' %}"></script>
+    <script src="{% static 'organrequest/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'organrequest/js/main.js' %}"></script>
+
+	</body>
+</html>

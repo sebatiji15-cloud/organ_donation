@@ -1,0 +1,86 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+  	<title>My Organ Donation History</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'organdonate/css/style.css' %}">
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-between align-items-center mb-4">
+				<div class="col-md-6">
+					<h2 class="heading-section mb-0">My Organ Donation History</h2>
+				</div>
+				<div class="col-md-6 text-md-right mt-3 mt-md-0">
+					<a href="/user/" class="btn btn-secondary px-3 py-2"><i class="fa fa-arrow-left"></i> Back to Dashboard</a>
+					<a href="/addorgan/" class="btn btn-primary px-3 py-2 ml-2">+ Donate Organ</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+						<table class="table">
+						  <thead class="thead-primary">
+						    <tr>
+								<th>#</th>
+						        <th>Donor Account</th>
+						        <th>Full Name</th>
+						        <th>Email ID</th>
+								<th>Address</th>
+								<th>Blood Group</th>
+								<th>Organ Type</th>
+								<th>Age</th>
+								<th>Hospital</th>
+								<th>Status</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						   {% for i in don %}
+						    <tr class="alert" role="alert">
+						      <th scope="row">{{forloop.counter}}</th>
+						      <td>{{i.user}}</td>
+							  <td><strong>{{i.name}}</strong></td>
+						      <td>{{i.email}}</td>
+						      <td>{{i.address}}</td>
+						      <td><span class="badge badge-light border">{{i.bloodgroup}}</span></td>
+							  <td><strong style="color:#007bff;">{{i.organtype}}</strong></td>
+							  <td>{{i.age}}</td>
+							  <td>{{i.hospital}}</td>
+							  <td>
+								{% if i.status == 'Approved' %}
+								<span class="badge badge-success px-2 py-1" style="background:#28a745; color:#fff; border-radius:4px;">Approved</span>
+								{% elif i.status == 'Rejected' %}
+								<span class="badge badge-danger px-2 py-1" style="background:#dc3545; color:#fff; border-radius:4px;">Rejected</span>
+								{% else %}
+								<span class="badge badge-warning px-2 py-1" style="background:#ffc107; color:#212529; border-radius:4px;">Pending</span>
+								{% endif %}
+							  </td>
+						    </tr>
+						    {% empty %}
+						    <tr>
+						      <td colspan="10" class="text-center py-4 text-muted">
+						      	You haven't registered any organ donations yet. 
+						      	<a href="/addorgan/" class="text-primary font-weight-bold ml-1">Register to donate an organ now &rarr;</a>
+						      </td>
+						    </tr>
+						  {% endfor %}
+						  </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script src="{% static 'organdonate/js/jquery.min.js' %}"></script>
+    <script src="{% static 'organdonate/js/popper.js' %}"></script>
+    <script src="{% static 'organdonate/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'organdonate/js/main.js' %}"></script>
+
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Edit Profile - Organ Donation Portal</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'reg/css/roboto-font.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'reg/fonts/font-awesome-5/css/fontawesome-all.min.css' %}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'reg/css/style.css' %}"/>
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="/userprof/" method="POST">
+				{% csrf_token %}
+				<h2>Edit Profile</h2>
+
+				{% if success %}
+				<div style="color: #155724; background-color: #d4edda; border: 1px solid #c3e6cb; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center; font-size: 14px;">
+					Profile updated successfully!
+				</div>
+				{% endif %}
+
+                {% for i in re %}
+				<div class="form-row">
+					<label for="username">User Name</label>
+					<input type="text" name="username" value="{{i.username}}" id="username" class="input-text" placeholder="User Name" required>
+					<i class="fas fa-user"></i>
+				</div>
+				<div class="form-row">
+					<label for="phonenumber">Phone Number</label>
+					<input type="text" name="phonenumber" value="{{i.phno}}" id="phonenumber" class="input-text" placeholder="Phone Number" required>
+					<i class="fas fa-phone"></i>
+				</div>
+				<div class="form-row">
+					<label for="email">Email (Read Only)</label>
+					<input type="text" name="email" value="{{i.email}}" id="email" class="input-text" placeholder="Email" readonly style="background-color: #f1f1f1;">
+					<i class="fas fa-envelope"></i>
+				</div>
+				<div class="form-row">
+					<label for="password">Password</label>
+					<input type="password" name="password" value="{{i.password}}" id="password" class="input-text" placeholder="Password" required>
+					<i class="fas fa-lock"></i>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="save" class="register" value="Update Profile">
+				</div>
+                {% endfor %}
+				<div style="text-align: center; margin-top: 15px;">
+					<a href="/user/" style="color: #666; text-decoration: none; font-size: 14px;">&larr; Back to Dashboard</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

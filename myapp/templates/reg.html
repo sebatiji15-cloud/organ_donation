@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>User Registration - Organ Donation</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="{% static 'reg/css/roboto-font.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'reg/fonts/font-awesome-5/css/fontawesome-all.min.css' %}">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="{% static 'reg/css/style.css' %}"/>
+</head>
+<body class="form-v5">
+	<div class="page-content">
+		<div class="form-v5-content">
+			<form class="form-detail" action="/reg/" method="POST">
+				{% csrf_token %}
+				<h2>User Registration</h2>
+
+				{% if error %}
+				<div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center; font-size: 14px;">
+					{{ error }}
+				</div>
+				{% endif %}
+
+				<div class="form-row">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username" class="input-text" placeholder="Username" required>
+					<i class="fas fa-user"></i>
+				</div>
+				<div class="form-row">
+					<label for="phonenumber">Phone Number</label>
+					<input type="text" name="phonenumber" id="phonenumber" class="input-text" placeholder="Phone Number" required>
+					<i class="fas fa-phone"></i>
+				</div>
+				<div class="form-row">
+					<label for="blood">Blood Group</label>
+					<select name="blood" id="blood" class="input-text" required style="width: 100%; height: 50px; border: 1px solid #e5e5e5; padding: 0 15px; border-radius: 4px; outline: none; background: #fff;">
+						<option value="">Select Blood Group</option>
+						<option value="A +ve">A +ve</option>
+						<option value="A -ve">A -ve</option>
+						<option value="B +ve">B +ve</option>
+						<option value="B -ve">B -ve</option>
+						<option value="AB +ve">AB +ve</option>
+						<option value="AB -ve">AB -ve</option>
+						<option value="O +ve">O +ve</option>
+						<option value="O -ve">O -ve</option>
+					</select>
+				</div>
+				<div class="form-row">
+					<label for="email">Email Address</label>
+					<input type="email" name="email" id="email" class="input-text" placeholder="Email" required>
+					<i class="fas fa-envelope"></i>
+				</div>
+				<div class="form-row">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" class="input-text" placeholder="Password" required>
+					<i class="fas fa-lock"></i>
+				</div>
+				<div class="form-row-last">
+					<input type="submit" name="register" class="register" value="Register Now">
+				</div>
+				<div style="text-align: center; margin-top: 15px;">
+					<a href="/log/" style="color: #3786bd; text-decoration: none; font-size: 14px;">Already have an account? Log In</a>
+					<br><br>
+					<a href="/" style="color: #888; text-decoration: none; font-size: 13px;">&larr; Back to Home</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

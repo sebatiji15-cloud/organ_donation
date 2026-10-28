@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hospital Registration - Organ Donation Portal</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'hosreg/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'hosreg/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'hosreg/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'hosreg/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'hosreg/css/main.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 class="title">Hospital Registration</h2>
+
+                    {% if error %}
+                    <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 12px; border-radius: 4px; margin-bottom: 20px; text-align: center; font-size: 14px;">
+                        {{ error }}
+                    </div>
+                    {% endif %}
+
+                    {% if success %}
+                    <div style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 12px; border-radius: 4px; margin-bottom: 20px; text-align: center; font-size: 14px;">
+                        {{ success }}
+                    </div>
+                    {% endif %}
+
+                    <form method="POST" action="/hosreg/">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="HOSPITAL NAME" name="name" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="LOGIN USERNAME" name="username" required>
+                        </div>
+                         <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="ADDRESS" name="address" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="email" placeholder="EMAIL ID" name="emailid" required>
+                        </div>
+                        <div class="input-group">
+                            <input class="input--style-1" type="text" placeholder="PHONE NUMBER" name="phonenumber" required>
+                        </div>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <input class="input--style-1" type="password" placeholder="PASSWORD" name="password" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-t-20">
+                            <button class="btn btn--radius btn--green" type="submit">Submit for Approval</button>
+                        </div>
+                        <div style="text-align: center; margin-top: 25px;">
+                            <a href="/log/" style="color: #4CAF50; font-weight: bold; text-decoration: none;">Already Approved? Log In</a>
+                            <br><br>
+                            <a href="/" style="color: #666; text-decoration: none; font-size: 13px;">&larr; Back to Home</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="{% static 'hosreg/vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'hosreg/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'hosreg/vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'hosreg/vendor/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'hosreg/js/global.js' %}"></script>
+
+</body>
+</html>

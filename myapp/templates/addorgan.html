@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Donate Organ - Organ Donation Portal</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- LINEARICONS -->
+		<link rel="stylesheet" href="{% static 'addorgan/fonts/linearicons/style.css' %}">
+		
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="{% static 'addorgan/css/style.css' %}">
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="inner">
+				<img src="{% static 'addorgan/images/image-1.png' %}" alt="" class="image-1">
+				<form action="/addorgan/" method="POST">
+					{% csrf_token %}
+					<h3>Donate Organ</h3>
+
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input type="text" class="form-control" placeholder="Donor Full Name" name="name" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input type="email" class="form-control" placeholder="Contact Email" name="email" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-map-marker"></span>
+						<input type="text" class="form-control" placeholder="Address" name="address" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-drop"></span>
+						<select class="form-control" name="bloodgroup" required>
+							<option value="">Select Blood Group</option>
+							<option value="A +ve">A +ve</option>
+							<option value="A -ve">A -ve</option>
+							<option value="B +ve">B +ve</option>
+							<option value="B -ve">B -ve</option>
+							<option value="AB +ve">AB +ve</option>
+							<option value="AB -ve">AB -ve</option>
+							<option value="O +ve">O +ve</option>
+							<option value="O -ve">O -ve</option>
+						</select>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-heart-pulse"></span>
+						<input type="text" class="form-control" placeholder="Organ to Donate (e.g. Kidney, Liver)" name="organtype" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-text-format"></span>
+						<input type="number" class="form-control" placeholder="Donor Age" name="age" required>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-apartment"></span>
+						<select class="form-control" name="hospital" required>
+							<option value="">Select Target Hospital</option>
+							{% for i in hst %}
+							<option value="{{i.id}}">{{i.hospitalname}}</option>
+							{% empty %}
+							<option value="General">General Hospital</option>
+							{% endfor %}
+						</select>
+					</div>
+
+					<button type="submit">
+						<span>Submit Donation</span>
+					</button>
+
+					<div style="text-align: center; margin-top: 15px;">
+						<a href="/user/" style="color: #666; text-decoration: none; font-size: 13px;">&larr; Back to Dashboard</a>
+					</div>
+				</form>
+				<img src="{% static 'addorgan/images/image-2.png' %}" alt="" class="image-2">
+			</div>
+			
+		</div>
+		
+		<script src="{% static 'addorgan/js/jquery-3.3.1.min.js' %}"></script>
+		<script src="{% static 'addorgan/js/main.js' %}"></script>
+	</body>
+</html>

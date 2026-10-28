@@ -1,0 +1,31 @@
+from myapp import views
+from django.urls import path
+
+urlpatterns = [
+    path("", views.index, name="index"),
+    path("reg/", views.reg, name="reg"),
+    path("log/", views.log, name="log"),
+    path("logout/", views.logout_view, name="logout"),
+    path("hosreg/", views.hosreg, name="hosreg"),
+    path("user/", views.user, name="user"),
+    path("adminp/", views.admin, name="admin"),
+    path("newhospital/", views.newhospital, name="newhospital"),
+    path("app_hospital/<id>/", views.app_hospital, name="app_hospital"),
+    path("rej_hospital/<id>/", views.rej_hospital, name="rej_hospital"),
+    path("hospitals/", views.hospitals, name="hospitals"),
+    path("addorgan/", views.addorgan, name="addorgan"),
+    path("organdonate/", views.organdonate, name="organdonate"),
+    path("hospitalindex/", views.hospitalindex, name="hospitalindex"),
+    path("neworgandonation/", views.neworgandonation, name="neworgandonation"),
+    path("app_user/<id>/", views.app_user, name="app_user"),
+    path("rej_user/<id>/", views.rej_user, name="rej_user"),
+    path("organrequest/", views.organrequest, name="organrequest"),
+    path("odreg/", views.odreg, name="odreg"),
+    path("deleterequest/<id>/", views.deleterequest, name="deleterequest"),
+    path("approverequest/<id>/", views.approverequest, name="approverequest"),
+    path("orhistory/", views.orhistory, name="orhistory"),
+    path("admareq/", views.admareq, name="admareq"),
+    path("userprof/", views.userprof, name="userprof"),
+    path("hosprof/", views.hosprof, name="hosprof"),
+    path("hosoreq/", views.hosoreq, name="hosoreq"),
+]
